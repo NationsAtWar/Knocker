@@ -1,8 +1,8 @@
 # Knocker
 Vintage Story mod for locating ore
 
-To craft, you need a couple pieces of the ore that you want to locate as well as two charcoal, in the following configuration:
-CC
+To craft, you need a couple pieces of the ore that you want to locate as well as two charcoal, in the following configuration:  
+CC  
 OO
 
 After you've crafted your knocker, start knocking on some stone with it! Just hold right click on any stone until it spits out some numbers at you.
