@@ -1,0 +1,23 @@
+{
+	code: "knocker",
+	class: "Knocker",
+	texture: { base: "item/knocker" },
+	creativeinventory: { "general": ["*"], "items": ["*"] },
+	damagedby: ["blockbreaking", "attacking"],
+	miningspeedbytype: {
+		"*": {
+			"stone": 2.5,
+			"ore": 2.5,
+			"metal": 2.5
+		}
+	},
+	variantgroups: [
+		{ code: "ores", states: ["nativecopper", "limonite", "nativegold", "galena", "cassiterite", "chromite", "ilmenite", "sphalerite", "silver", "bismuthinite", "magnetite", "hematite", "malachite", "pentlandite", "uranium", "rhodocrocite"] },
+	],
+	attackpowerbytype: {
+		"*": 1
+	},
+	durabilitybytype: {
+		"*": 60
+	}
+}

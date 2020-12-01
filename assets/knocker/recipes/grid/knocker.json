@@ -1,0 +1,10 @@
+{
+	ingredientPattern: "CC	NN",
+	ingredients: {
+		"C": { type: "item", code: "game:charcoal" },
+		"N": { type: "item", code: "game:nugget-*", name: "ore" }
+	},
+	width: 2,
+	height: 2,
+	output: { type: "item", code: "knocker-{ore}" }
+}
