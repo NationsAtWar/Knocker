@@ -1,7 +1,7 @@
 {
 	code: "knocker",
 	class: "Knocker",
-	texture: { base: "item/knocker" },
+	texture: { base: "item/knocker-{ores}" },
 	creativeinventory: { "general": ["*"], "items": ["*"], "tools": ["*"] },
 	damagedby: ["blockbreaking", "attacking"],
 	miningspeedbytype: {
