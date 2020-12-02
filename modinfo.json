@@ -4,7 +4,7 @@
   "name": "Knocker",
   "author": "Aculem",
   "description": "Craft knockers that assist in finding specific ore types",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "dependency": {
     "game": ""
   }
