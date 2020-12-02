@@ -7,8 +7,10 @@ using Vintagestory.API.Server;
 /*  TO DO
  *  
  *  Clean up code / Add comments
- *  Add a fizzle if not on stone block
  *  Make readings depend on average ore type density
+ *  Add description, make item show up properly in-game
+ *  Add different texture for each variation of the knocker
+ *  Test in-game to make sure it works for each type of ore, fix any bugs
  */
 
 namespace AculemMods {
@@ -167,13 +169,13 @@ namespace AculemMods {
                             float oreDensity = 0;
 
                             int maxDistance = 32;
-                            string oreType = GetOreType(slot.Itemstack.GetName());
+                            string oreType = GetOreType(slot.Itemstack.Item.Code.GetName());
 
                             // Searches the radius around the selected block, returning an 'intensity' dependent on how many blocks it finds and how close they are
                             api.World.BlockAccessor.WalkBlocks(
                                 plrpos.AddCopy(-maxDistance, -maxDistance, -maxDistance),
                                 plrpos.AddCopy(maxDistance, maxDistance, maxDistance),
-                                (block, pos) => oreDensity += (block.BlockMaterial.Equals(EnumBlockMaterial.Ore) && block.LastCodePart(1).ToString().Equals(oreType)) ? 1 / pos.DistanceTo(blockSel.Position) : 0
+                                (block, pos) => oreDensity += (block.BlockMaterial.Equals(EnumBlockMaterial.Ore) && block.LastCodePart(1).ToString().Contains(oreType)) ? 1 / pos.DistanceTo(blockSel.Position) : 0
                             );
 
                             // (block, pos) => oreDensity += (!block.Code.Path.Contains("quartz") && block.BlockMaterial.Equals(EnumBlockMaterial.Ore)) ? 1 / pos.DistanceTo(blockSel.Position) : 0
@@ -188,6 +190,7 @@ namespace AculemMods {
 
                             clientAPI.ShowChatMessage("Ore Intensity: " + GetIntensityLevel(oreDensity) + " (" + oreDensity + ")");
                             clientAPI.ShowChatMessage("Ore Type: " + oreType);
+                            clientAPI.ShowChatMessage("Slot: " + slot.Itemstack.Item.Code.GetName());
 
                         } else {
 
@@ -231,6 +234,44 @@ namespace AculemMods {
         }
 
         private IntensityLevel GetIntensityLevel(float intensityInt) {
+
+            /*
+            int intensityBase = 1;
+
+            if (oreType == OreType.bismuthinite)
+                intensityBase = 4;
+            else if (oreType == OreType.cassiterite)
+                intensityBase = 5;
+            else if (oreType == OreType.chromite)
+                intensityBase = 3;
+            else if (oreType == OreType.galena)
+                intensityBase = 4;
+            else if (oreType == OreType.hematite)
+                intensityBase = 26;
+            else if (oreType == OreType.ilmenite)
+                intensityBase = 3;
+            else if (oreType == OreType.limonite)
+                intensityBase = 26;
+            else if (oreType == OreType.magnetite)
+                intensityBase = 26;
+            else if (oreType == OreType.malachite)
+                intensityBase = 6;
+            else if (oreType == OreType.nativecopper)
+                intensityBase = 6;
+            else if (oreType == OreType.nativegold)
+                intensityBase = 4;
+            else if (oreType == OreType.pentlandite)
+                intensityBase = 6;
+            else if (oreType == OreType.rhodocrocite)
+                intensityBase = 3;
+            else if (oreType == OreType.silver)
+                intensityBase = 4;
+            else if (oreType == OreType.sphalerite)
+                intensityBase = 4;
+            else if (oreType == OreType.uranium)
+                intensityBase = 4;
+
+            */
 
             if (intensityInt == 0)
                 return IntensityLevel.None;

@@ -1,8 +1,8 @@
 {
   "type": "code",
   "modid": "knocker",
-  "name": "knocker",
-  "author": "Unknown",
+  "name": "Knocker",
+  "author": "Aculem",
   "description": "Craft knockers that assist in finding specific ore types",
   "version": "1.0.0",
   "dependency": {

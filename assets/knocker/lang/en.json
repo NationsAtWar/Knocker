@@ -1,3 +1,19 @@
 {
-  "item-knocker": "Knocker"
+  "item-knocker-nativecopper": "Knocker (Native Copper)",
+  "item-knocker-limonite": "Knocker (Limonite)",
+  "item-knocker-nativegold": "Knocker (Native Gold)",
+  "item-knocker-galena": "Knocker (Galena)",
+  "item-knocker-cassiterite": "Knocker (Cassiterite)",
+  "item-knocker-chromite": "Knocker (Chromite)",
+  "item-knocker-ilmenite": "Knocker (Ilmenite)",
+  "item-knocker-sphalerite": "Knocker (Sphalerite)",
+  "item-knocker-silver": "Knocker (Silver)",
+  "item-knocker-bismuthinite": "Knocker (Bismuthinite)",
+  "item-knocker-magnetite": "Knocker (Magnetite)",
+  "item-knocker-hematite": "Knocker (Hematite)",
+  "item-knocker-malachite": "Knocker (Malachite)",
+  "item-knocker-pentlandite": "Knocker (Pentlandite)",
+  "item-knocker-uranium": "Knocker (Uranium)",
+  "item-knocker-rhodocrocite": "Knocker (Rhodocrocite)"
+  
 }
