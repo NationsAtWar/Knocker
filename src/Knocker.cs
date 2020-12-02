@@ -7,10 +7,7 @@ using Vintagestory.API.Server;
 /*  TO DO
  *  
  *  Clean up code / Add comments
- *  Make readings depend on average ore type density
- *  Add description, make item show up properly in-game
  *  Add different texture for each variation of the knocker
- *  Test in-game to make sure it works for each type of ore, fix any bugs
  */
 
 namespace AculemMods {
@@ -116,7 +113,7 @@ namespace AculemMods {
 
         public override bool OnHeldInteractStep(float secondsUsed, ItemSlot slot, EntityAgent byEntity, BlockSelection blockSel, EntitySelection entitySel) {
 
-            if (finishedKnocking)
+            if (finishedKnocking || blockSel == null)
                 return true;
 
             if (byEntity.World is IClientWorldAccessor) {
@@ -188,9 +185,15 @@ namespace AculemMods {
                             );
                             */
 
-                            clientAPI.ShowChatMessage("Ore Intensity: " + GetIntensityLevel(oreDensity) + " (" + oreDensity + ")");
-                            clientAPI.ShowChatMessage("Ore Type: " + oreType);
-                            clientAPI.ShowChatMessage("Slot: " + slot.Itemstack.Item.Code.GetName());
+                            // Reduced the durability of the Knocker by 1
+                            int durability = slot.Itemstack.Attributes.GetInt("durability", 5000);
+                            durability -= 1;
+                            slot.Itemstack.Attributes.SetInt("durability", durability);
+
+                            float correctOreDensity = CorrectOreDensity(oreType, oreDensity);
+
+                            clientAPI.ShowChatMessage(slot.Itemstack.GetName());
+                            clientAPI.ShowChatMessage("Ore Intensity: " + GetIntensityLevel(correctOreDensity) + " (" + correctOreDensity + ")");
 
                         } else {
 
@@ -233,61 +236,65 @@ namespace AculemMods {
             }
         }
 
-        private IntensityLevel GetIntensityLevel(float intensityInt) {
+        private float CorrectOreDensity(string oreType, float oreDensity) {
 
-            /*
+            OreType enumOreType = (OreType)Enum.Parse(typeof(OreType), oreType);
+
             int intensityBase = 1;
 
-            if (oreType == OreType.bismuthinite)
+            if (enumOreType == OreType.bismuthinite)
                 intensityBase = 4;
-            else if (oreType == OreType.cassiterite)
+            else if (enumOreType == OreType.cassiterite)
                 intensityBase = 5;
-            else if (oreType == OreType.chromite)
+            else if (enumOreType == OreType.chromite)
                 intensityBase = 3;
-            else if (oreType == OreType.galena)
+            else if (enumOreType == OreType.galena)
                 intensityBase = 4;
-            else if (oreType == OreType.hematite)
+            else if (enumOreType == OreType.hematite)
                 intensityBase = 26;
-            else if (oreType == OreType.ilmenite)
+            else if (enumOreType == OreType.ilmenite)
                 intensityBase = 3;
-            else if (oreType == OreType.limonite)
+            else if (enumOreType == OreType.limonite)
                 intensityBase = 26;
-            else if (oreType == OreType.magnetite)
+            else if (enumOreType == OreType.magnetite)
                 intensityBase = 26;
-            else if (oreType == OreType.malachite)
+            else if (enumOreType == OreType.malachite)
                 intensityBase = 6;
-            else if (oreType == OreType.nativecopper)
+            else if (enumOreType == OreType.nativecopper)
                 intensityBase = 6;
-            else if (oreType == OreType.nativegold)
+            else if (enumOreType == OreType.nativegold)
                 intensityBase = 4;
-            else if (oreType == OreType.pentlandite)
+            else if (enumOreType == OreType.pentlandite)
                 intensityBase = 6;
-            else if (oreType == OreType.rhodocrocite)
+            else if (enumOreType == OreType.rhodocrocite)
                 intensityBase = 3;
-            else if (oreType == OreType.silver)
+            else if (enumOreType == OreType.silver)
                 intensityBase = 4;
-            else if (oreType == OreType.sphalerite)
+            else if (enumOreType == OreType.sphalerite)
                 intensityBase = 4;
-            else if (oreType == OreType.uranium)
+            else if (enumOreType == OreType.uranium)
                 intensityBase = 4;
 
-            */
+            return oreDensity / intensityBase;
+        }
+
+        private IntensityLevel GetIntensityLevel(float intensityInt) {
 
             if (intensityInt == 0)
                 return IntensityLevel.None;
-            else if (intensityInt > 0 && intensityInt < 1.0f)
+            else if (intensityInt > 0 && intensityInt < 0.25f)
                 return IntensityLevel.Minute;
-            else if (intensityInt >= 1.0f && intensityInt < 10.0f)
+            else if (intensityInt >= 0.25f && intensityInt < 0.5f)
                 return IntensityLevel.VeryLow;
-            else if (intensityInt >= 10.0f && intensityInt < 20.0f)
+            else if (intensityInt >= 0.5f && intensityInt < 0.75f)
                 return IntensityLevel.Low;
-            else if (intensityInt >= 20.0f && intensityInt < 30.0f)
+            else if (intensityInt >= 0.75f && intensityInt < 1.0f)
                 return IntensityLevel.Medium;
-            else if (intensityInt >= 30.0f && intensityInt < 50.0f)
+            else if (intensityInt >= 1.0f && intensityInt < 2.0f)
                 return IntensityLevel.High;
-            else if (intensityInt > 50.0f && intensityInt < 100.0f)
+            else if (intensityInt > 2.0f && intensityInt < 3.0f)
                 return IntensityLevel.VeryHigh;
-            else if (intensityInt >= 100.0f)
+            else if (intensityInt >= 3.0f)
                 return IntensityLevel.UltraHigh;
             else
                 return IntensityLevel.None;
