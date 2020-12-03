@@ -209,12 +209,6 @@ namespace AculemMods {
             return true;
         }
 
-        private bool SendDebug(ICoreClientAPI api, string debugMessage) {
-
-            api.ShowChatMessage("Debug: " + debugMessage);
-            return true;
-        }
-
         private void SpawnParticle(int amount, EntityAgent entity) {
 
             for (int i = 0; i < amount; i++) {
