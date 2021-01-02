@@ -1,4 +1,4 @@
-# Knocker
+# Knockers
 Vintage Story mod for locating ore
 
 To craft, you need a couple pieces of the ore that you want to locate as well as two charcoal, in the following configuration:  
