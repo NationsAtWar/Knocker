@@ -7,7 +7,7 @@
     <ProjectGuid>{33B51FF5-F23E-48DC-A140-3236070E48B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>knocker</RootNamespace>
+    <RootNamespace>AculemMods</RootNamespace>
     <AssemblyName>knocker</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

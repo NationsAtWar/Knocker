@@ -4,6 +4,7 @@
   "name": "Knocker",
   "author": "Aculem",
   "description": "Craft knockers that assist in finding specific ore types",
+  "website": "https://github.com/NationsAtWar/vs-knockers",
   "version": "1.2.0",
   "dependency": {
     "game": ""

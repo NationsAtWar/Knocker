@@ -2,7 +2,6 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
-using Vintagestory.API.Server;
 
 /*  TO DO
  *  
@@ -14,23 +13,10 @@ namespace AculemMods {
 
     public class KnockerMod : ModSystem {
 
-        public ICoreServerAPI serverAPI;
-
-        public ICoreServerAPI GetAPI() {
-
-            return serverAPI;
-        }
-
         public override void Start(ICoreAPI api) {
 
             base.Start(api);
             api.RegisterItemClass("Knocker", typeof(KnockerItem));
-        }
-
-        public override void StartServerSide(ICoreServerAPI api) {
-
-            base.StartServerSide(api);
-            serverAPI = api;
         }
     }
 
